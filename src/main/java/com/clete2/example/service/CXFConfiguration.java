@@ -1,7 +1,5 @@
 package com.clete2.example.service;
 
-import java.util.Arrays;
-
 import javax.annotation.PostConstruct;
 import javax.xml.ws.Endpoint;
 
@@ -10,8 +8,6 @@ import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.apache.cxf.transport.servlet.CXFServlet;
-import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
-import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -51,7 +47,6 @@ public class CXFConfiguration {
 	public void peopleRESTService() {
 		JAXRSServerFactoryBean jrssfb = new JAXRSServerFactoryBean();
 		jrssfb.setBus(cxfBus);
-		jrssfb.setProviders(Arrays.asList(new Object[] {new JacksonJsonProvider(), new JacksonJaxbJsonProvider() }));
 		jrssfb.setServiceBean(peopleRESTServiceImpl);
 		jrssfb.setAddress("/rest/");
 		Server server = jrssfb.create();

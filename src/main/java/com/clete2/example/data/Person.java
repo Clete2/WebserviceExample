@@ -8,9 +8,11 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 public class Person {
 	@XmlID
 	@Id
