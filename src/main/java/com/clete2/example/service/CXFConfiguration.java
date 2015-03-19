@@ -1,5 +1,7 @@
 package com.clete2.example.service;
 
+import java.util.Arrays;
+
 import javax.annotation.PostConstruct;
 import javax.xml.ws.Endpoint;
 
@@ -13,9 +15,13 @@ import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
-import com.clete2.example.service.rest.PeopleRESTServiceImpl;
-import com.clete2.example.service.soap.PeopleSOAPService;
+import com.clete2.example.service.rest.JobRESTService;
+import com.clete2.example.service.rest.PeopleRESTService;
+import com.clete2.example.service.soap.SOAPService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 
 @Configuration
@@ -25,32 +31,40 @@ public class CXFConfiguration {
 	private Bus cxfBus;
 
 	@Autowired
-	private PeopleRESTServiceImpl peopleRESTServiceImpl;
+	private PeopleRESTService peopleRESTService;
+	
+	@Autowired
+	private JobRESTService jobRESTService;
 
 	@Autowired
-	private PeopleSOAPService peopleSOAPService;
+	private SOAPService soapService;
 
 	@Bean
 	public ServletRegistrationBean cxfServletRegistrationBean() {
-		ServletRegistrationBean cxfServletRegistrationBean = new ServletRegistrationBean(new CXFServlet(), "/services/*");
+		ServletRegistrationBean cxfServletRegistrationBean = new ServletRegistrationBean(new CXFServlet(), "/*");
 		cxfServletRegistrationBean.setLoadOnStartup(1);
 		return cxfServletRegistrationBean;
 	}
 
 	@Bean
-	public Endpoint peopleSOAPService() {
-		Endpoint endpoint = new EndpointImpl(cxfBus, peopleSOAPService);
-		endpoint.publish("/peopleService");
+	public Endpoint soapService() {
+		Endpoint endpoint = new EndpointImpl(cxfBus, soapService);
+		endpoint.publish("/soapService");
 		return endpoint;
 	}
 
 	@PostConstruct
-	public void peopleRESTService() {
+	public void restService() {
 		JAXRSServerFactoryBean jrssfb = new JAXRSServerFactoryBean();
 		jrssfb.setBus(cxfBus);
-		jrssfb.setServiceBean(peopleRESTServiceImpl);
-		jrssfb.setAddress("/rest/");
-		jrssfb.setProvider(new JacksonJaxbJsonProvider());
+		jrssfb.setServiceBeans(Arrays.asList(new Object[] { peopleRESTService, jobRESTService }));
+		jrssfb.setAddress("/restService");
+		
+		JacksonJaxbJsonProvider jaxbJsonProvider = new JacksonJaxbJsonProvider();
+		ObjectMapper mapper = Jackson2ObjectMapperBuilder.json().featuresToEnable(SerializationFeature.INDENT_OUTPUT).build();
+		jaxbJsonProvider.setMapper(mapper);
+		
+		jrssfb.setProvider(jaxbJsonProvider);
 		Server server = jrssfb.create();
 		server.start();
 	}

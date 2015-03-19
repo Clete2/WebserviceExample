@@ -5,27 +5,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlID;
 
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Job {
-	@XmlID
 	@Id
 	@GeneratedValue
-	private String id;
+	private long id;
 
 	private String title;
 	private double minPay;
 	private double maxPay;
 
+	public Job() {
+	}
+	
 	public Job(String title, double minPay, double maxPay) {
 		this.title = title;
 		this.minPay = minPay;
 		this.maxPay = maxPay;
-	}
-	
-	protected Job() {
 	}
 	
 	public String getTitle() {
@@ -52,11 +50,11 @@ public class Job {
 		this.maxPay = maxPay;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
-	
-	public void setId(String id) {
+
+	public void setId(long id) {
 		this.id = id;
 	}
 }

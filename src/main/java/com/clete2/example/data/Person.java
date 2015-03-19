@@ -4,53 +4,54 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlID;
-import javax.xml.bind.annotation.XmlIDREF;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement
 public class Person {
-	@XmlID
 	@Id
 	@GeneratedValue
-	private String id;
+	private long id;
 
 	private String name;
 	private String notes;
 	private boolean hasNiceHair;
 	private double payPercentile;
 	private transient double salary;
-	
-	@XmlIDREF
+
 	@ManyToOne
 	private Job job;
 
+	public Person() {
+	}
+
 	public Person(String name, String notes, double payPercentile, Job job) {
+		this();
 		this.name = name;
 		this.notes = notes;
 		this.payPercentile = payPercentile;
 		this.job = job;
 	}
 
-	public Person(String name, String notes, double payPercentile, Job job, boolean hasNiceHair) {
+	public Person(String name, String notes, double payPercentile, Job job,
+			boolean hasNiceHair) {
 		this(name, notes, payPercentile, job);
 		this.hasNiceHair = hasNiceHair;
 	}
 
-	protected Person() {
-	}
-
-	public void calculateSalary() {
+	private void calculateSalary() {
 		double minPay = job.getMinPay();
 		double maxPay = job.getMaxPay();
-				
-		this.salary = minPay + ((maxPay - minPay) * (payPercentile / 100));
+
+		salary = minPay + ((maxPay - minPay) * (payPercentile / 100));
 	}
-	
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -82,20 +83,24 @@ public class Person {
 	public void setPayPercentile(double payPercentile) {
 		this.payPercentile = payPercentile;
 	}
-	
-	public String getId() {
-		return id;
-	}
-	
-	public void setId(String id) {
-		this.id = id;
-	}
 
+	// TODO: Bad form. Need a better way.
 	public double getSalary() {
+		if(salary == 0.0) {
+			calculateSalary();
+		}
 		return salary;
 	}
 
 	public void setSalary(double salary) {
 		this.salary = salary;
+	}
+
+	public Job getJob() {
+		return job;
+	}
+
+	public void setJob(Job job) {
+		this.job = job;
 	}
 }
