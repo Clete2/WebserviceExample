@@ -3,12 +3,17 @@ package com.clete2.example.data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Job {
+	@XmlID
 	@Id
 	@GeneratedValue
-	private long id;
+	private String id;
 
 	private String title;
 	private double minPay;
@@ -47,7 +52,11 @@ public class Job {
 		this.maxPay = maxPay;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
 	}
 }

@@ -4,12 +4,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Person {
+	@XmlID
 	@Id
 	@GeneratedValue
-	private long id;
+	private String id;
 
 	private String name;
 	private String notes;
@@ -17,6 +23,7 @@ public class Person {
 	private double payPercentile;
 	private transient double salary;
 	
+	@XmlIDREF
 	@ManyToOne
 	private Job job;
 
@@ -73,9 +80,13 @@ public class Person {
 	public void setPayPercentile(double payPercentile) {
 		this.payPercentile = payPercentile;
 	}
-
-	public long getId() {
+	
+	public String getId() {
 		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public double getSalary() {
@@ -84,13 +95,5 @@ public class Person {
 
 	public void setSalary(double salary) {
 		this.salary = salary;
-	}
-	
-	public Job getJob() {
-		return job;
-	}
-
-	public void setJob(Job job) {
-		this.job = job;
 	}
 }

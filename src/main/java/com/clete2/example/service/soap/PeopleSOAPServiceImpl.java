@@ -1,4 +1,4 @@
-package com.clete2.example.service;
+package com.clete2.example.service.soap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import com.clete2.example.data.Person;
 import com.clete2.example.data.PersonRepository;
 
 @Component
-public class PeopleServiceImpl implements PeopleService {
+public class PeopleSOAPServiceImpl implements PeopleSOAPService {
 	@Autowired
 	private PersonRepository personRepository;
 
