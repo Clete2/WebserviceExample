@@ -16,6 +16,7 @@ import org.springframework.context.annotation.ImportResource;
 
 import com.clete2.example.service.rest.PeopleRESTServiceImpl;
 import com.clete2.example.service.soap.PeopleSOAPService;
+import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 
 @Configuration
 @ImportResource({ "classpath:META-INF/cxf/cxf.xml" })
@@ -49,6 +50,7 @@ public class CXFConfiguration {
 		jrssfb.setBus(cxfBus);
 		jrssfb.setServiceBean(peopleRESTServiceImpl);
 		jrssfb.setAddress("/rest/");
+		jrssfb.setProvider(new JacksonJaxbJsonProvider());
 		Server server = jrssfb.create();
 		server.start();
 	}

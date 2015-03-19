@@ -8,7 +8,7 @@
 
 	<properties>
 		<cxf.version>2.7.15</cxf.version>
-		<rs-api.version>2.0.1</rs-api.version>
+		<jackson-rs.version>2.4.0</jackson-rs.version>
 	</properties>
 
 	<parent>
@@ -45,6 +45,11 @@
 					<artifactId>jetty-server</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>${jackson-rs.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
