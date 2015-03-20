@@ -10,29 +10,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.clete2.example.data.JobRepository;
 import com.clete2.example.data.Person;
-import com.clete2.example.data.PersonRepository;
-import com.clete2.example.service.NullAwareBeanUtils;
 import com.clete2.example.service.ServiceBO;
 import com.clete2.example.to.PersonTO;
 
 @Component
 @Path("/people")
 public class PeopleRESTService {
-	@Autowired
-	private PersonRepository personRepository;
-
-	@Autowired
-	private JobRepository jobRepository;
-
-	@Autowired
-	private NullAwareBeanUtils nullAwareBeanUtils;
-
 	@Autowired
 	private ServiceBO serviceBO;
 	
@@ -53,20 +40,20 @@ public class PeopleRESTService {
 	@GET
 	@Path("{id}")
 	@Produces("application/json")
-	public Person personById(@PathParam("id") Long id) {
+	public Person personById(@PathParam("id") long id) {
 		return serviceBO.personById(id);
 	}
 
 	@POST
 	@Path("{id}")
 	@Produces("application/json")
-	public Person editPersonById(@PathParam("id") Long id, PersonTO personTO) throws IllegalAccessException, InvocationTargetException {
+	public Person editPersonById(@PathParam("id") long id, PersonTO personTO) throws IllegalAccessException, InvocationTargetException {
 		return serviceBO.editPersonById(id, personTO);
 	}
 
 	@DELETE
 	@Path("{id}")
-	public void deletePerson(@PathParam("id") Long id) {
-		personRepository.delete(id);
+	public void deletePerson(@PathParam("id") long id) {
+		serviceBO.deletePerson(id);
 	}
 }

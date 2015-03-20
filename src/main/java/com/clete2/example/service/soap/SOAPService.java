@@ -22,29 +22,29 @@ public interface SOAPService {
 	List<Person> findAllPeople();
 	
 	@WebMethod
-	List<Person> findPeople(@WebParam(name = "name") String name);
+	Person findPersonById(@WebParam(name = "id") long id);
 	
 	@WebMethod
 	Person createPerson(@WebParam(name = "person") PersonTO personTO);
 	
 	@WebMethod
-	Person editPerson(@WebParam(name = "id") Long id, @WebParam(name = "person") PersonTO personTO) throws IllegalAccessException, InvocationTargetException;
+	Person editPerson(@WebParam(name = "id") long id, @WebParam(name = "person") PersonTO personTO) throws IllegalAccessException, InvocationTargetException;
 	
 	@WebMethod
-	void deletePerson(@WebParam(name = "id") Long id);
+	void deletePerson(@WebParam(name = "id") long id);
 	
 	@WebMethod
 	List<Job> findAllJobs();
 	
 	@WebMethod
-	List<Job> findJobs(@WebParam(name = "title") String title);
+	Job findJob(@WebParam(name = "id") long id);
 	
 	@WebMethod
 	Job createJob(@WebParam(name = "job") JobTO jobTO);
 	
 	@WebMethod
-	Job editJob(@WebParam(name = "id") Long id, @WebParam(name = "job") JobTO jobTO) throws IllegalAccessException, InvocationTargetException;
+	Job editJob(@WebParam(name = "id") long id, @WebParam(name = "job") JobTO jobTO) throws IllegalAccessException, InvocationTargetException;
 	
 	@WebMethod
-	void deleteJob(@WebParam(name = "id") Long id);
+	void deleteJob(@WebParam(name = "id") long id);
 }
