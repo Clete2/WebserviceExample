@@ -1,7 +1,7 @@
 # WebserviceExample
 An example to show a CXF implementation of a REST and SOAP service.
 
-#Technologies used:
+# Technologies Utilized
 - Spring
 - Spring Boot
 - JPA
@@ -12,5 +12,5 @@ An example to show a CXF implementation of a REST and SOAP service.
 - Apache Utilities
 - Jackson JAXB JSON Object Mapper
 
-#Note
+# Note
 In the real world, there would be a lot of duplicate code to remove, but I have left the duplication for demonstration purposes.
