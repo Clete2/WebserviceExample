@@ -6,6 +6,10 @@ import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
+/**
+ * Object to hold Job data.
+ * Uses JPA to automatically map to a database.
+ */
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Job {

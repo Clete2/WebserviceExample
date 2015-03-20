@@ -1,5 +1,8 @@
 package com.clete2.example.to;
 
+/**
+ * Transfer object to receive updates to Job. Contains only updatable fields from Job.
+ */
 public class JobTO {
 	private String title;
 	private double minPay;

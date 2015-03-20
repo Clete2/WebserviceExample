@@ -12,6 +12,9 @@ import com.clete2.example.service.ServiceBO;
 import com.clete2.example.to.JobTO;
 import com.clete2.example.to.PersonTO;
 
+/**
+ * SOAP service implementation.
+ */
 @Component
 public class SOAPServiceImpl implements SOAPService {
 	@Autowired

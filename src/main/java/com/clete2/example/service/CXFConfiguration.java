@@ -24,6 +24,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 
+/**
+ * Configures Apache CXF.
+ */
 @Configuration
 @ImportResource({ "classpath:META-INF/cxf/cxf.xml" })
 public class CXFConfiguration {
@@ -39,6 +42,9 @@ public class CXFConfiguration {
 	@Autowired
 	private SOAPService soapService;
 
+	/**
+	 * Bean to register the CXF servlet that intercepts calls to CXF services.
+	 */
 	@Bean
 	public ServletRegistrationBean cxfServletRegistrationBean() {
 		ServletRegistrationBean cxfServletRegistrationBean = new ServletRegistrationBean(new CXFServlet(), "/*");
@@ -46,6 +52,9 @@ public class CXFConfiguration {
 		return cxfServletRegistrationBean;
 	}
 
+	/**
+	 * SOAP service endpoint.
+	 */
 	@Bean
 	public Endpoint soapService() {
 		Endpoint endpoint = new EndpointImpl(cxfBus, soapService);
@@ -53,6 +62,9 @@ public class CXFConfiguration {
 		return endpoint;
 	}
 
+	/**
+	 * REST service endpoint. Contains People and Jobs.
+	 */
 	@PostConstruct
 	public void restService() {
 		JAXRSServerFactoryBean jrssfb = new JAXRSServerFactoryBean();

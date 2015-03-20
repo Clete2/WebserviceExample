@@ -12,6 +12,9 @@ import com.clete2.example.data.Person;
 import com.clete2.example.to.JobTO;
 import com.clete2.example.to.PersonTO;
 
+/**
+ * SOAP service interface.
+ */
 @WebService
 public interface SOAPService {
 	@WebMethod

@@ -5,6 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+/**
+ * Object to hold Person data.
+ * Uses JPA to automatically map to a database.
+ */
 @Entity
 public class Person {
 	@Id
@@ -84,6 +88,10 @@ public class Person {
 		this.payPercentile = payPercentile;
 	}
 
+	/**
+	 * Calculates the salary before returning.
+	 * @return
+	 */
 	// TODO: Bad form. Need a better way.
 	public double getSalary() {
 		if(salary == 0.0) {

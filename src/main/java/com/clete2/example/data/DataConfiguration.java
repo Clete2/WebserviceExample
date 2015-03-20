@@ -5,6 +5,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Configuration for the database.
+ */
 @Configuration
 public class DataConfiguration {
 	@Autowired
@@ -13,6 +16,10 @@ public class DataConfiguration {
 	@Autowired
 	private PersonRepository personRepository;
 
+	/**
+	 * Inserts some sample data into the database.
+	 * By default with Spring-data-JPA, a H2 database is initialized.
+	 */
 	@PostConstruct
 	public void initializeData() {
 		Job peon = jobRepository.save(new Job("Peon", 10000, 20000));

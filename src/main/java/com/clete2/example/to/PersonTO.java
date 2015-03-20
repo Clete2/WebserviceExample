@@ -1,5 +1,8 @@
 package com.clete2.example.to;
 
+/**
+ * Transfer object to receive updates to Person. Contains only updatable fields from Person.
+ */
 public class PersonTO {
 	private String name;
 	private String notes;

@@ -17,6 +17,9 @@ import com.clete2.example.data.Person;
 import com.clete2.example.service.ServiceBO;
 import com.clete2.example.to.PersonTO;
 
+/**
+ * REST service.
+ */
 @Component
 @Path("/people")
 public class PeopleRESTService {

@@ -15,6 +15,10 @@ import com.clete2.example.data.PersonRepository;
 import com.clete2.example.to.JobTO;
 import com.clete2.example.to.PersonTO;
 
+/**
+ * Business object to act as a layer in between the database and each service.
+ * Serves as a code-deduplicator between the REST and SOAP services.
+ */
 @Component
 public class ServiceBO {
 	@Autowired

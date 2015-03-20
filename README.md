@@ -5,6 +5,7 @@ An example to show a CXF implementation of a REST and SOAP service.
 - Spring
 - Spring Boot
 - JPA
+- Spring Data JPA
 - H2
 - CXF
 - JAX-WS
