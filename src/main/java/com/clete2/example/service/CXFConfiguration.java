@@ -41,7 +41,7 @@ public class CXFConfiguration {
 
 	@Bean
 	public ServletRegistrationBean cxfServletRegistrationBean() {
-		ServletRegistrationBean cxfServletRegistrationBean = new ServletRegistrationBean(new CXFServlet(), "/*");
+		ServletRegistrationBean cxfServletRegistrationBean = new ServletRegistrationBean(new CXFServlet(), "/services/*");
 		cxfServletRegistrationBean.setLoadOnStartup(1);
 		return cxfServletRegistrationBean;
 	}

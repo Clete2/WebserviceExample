@@ -6,8 +6,6 @@ import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
 
 import com.clete2.example.data.Job;
 import com.clete2.example.data.Person;
@@ -17,8 +15,6 @@ import com.clete2.example.to.PersonTO;
 @WebService
 public interface SOAPService {
 	@WebMethod
-	@GET
-	@Path("/people") 
 	List<Person> findAllPeople();
 	
 	@WebMethod
