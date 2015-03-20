@@ -56,7 +56,7 @@ public class JobRESTService {
 	
 	@DELETE
 	@Path("{id}")
-	public void deleteJob(@PathParam("id") Long id) {
+	public void deleteJob(@PathParam("id") long id) {
 		serviceBO.deleteJob(id);
 	}
 }
