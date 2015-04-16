@@ -72,11 +72,14 @@ public class CXFConfiguration {
 		jrssfb.setServiceBeans(Arrays.asList(peopleRESTService, jobRESTService));
 		jrssfb.setAddress("/restService");
 		
+		// Make a custom provider that contains a mapper which does 'pretty print'
+		// It is unnecessary to set the provider into the JAXRSServerFactoryBean if pretty print is not wanted
 		JacksonJaxbJsonProvider jaxbJsonProvider = new JacksonJaxbJsonProvider();
 		ObjectMapper mapper = Jackson2ObjectMapperBuilder.json().featuresToEnable(SerializationFeature.INDENT_OUTPUT).build();
 		jaxbJsonProvider.setMapper(mapper);
 		
 		jrssfb.setProvider(jaxbJsonProvider);
+		
 		Server server = jrssfb.create();
 		server.start();
 	}
