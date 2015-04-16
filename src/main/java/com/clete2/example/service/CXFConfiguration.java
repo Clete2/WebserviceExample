@@ -69,7 +69,7 @@ public class CXFConfiguration {
 	public void restService() {
 		JAXRSServerFactoryBean jrssfb = new JAXRSServerFactoryBean();
 		jrssfb.setBus(cxfBus);
-		jrssfb.setServiceBeans(Arrays.asList(new Object[] { peopleRESTService, jobRESTService }));
+		jrssfb.setServiceBeans(Arrays.asList(peopleRESTService, jobRESTService));
 		jrssfb.setAddress("/restService");
 		
 		JacksonJaxbJsonProvider jaxbJsonProvider = new JacksonJaxbJsonProvider();
