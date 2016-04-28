@@ -16,3 +16,7 @@ Feature: Job Repository
 		
 	Scenario: Job Title
 		Then the Job title should be Burger Flipper
+		
+	Scenario: Delete Job
+		Then delete the Job
+		Then the Job should be deleted

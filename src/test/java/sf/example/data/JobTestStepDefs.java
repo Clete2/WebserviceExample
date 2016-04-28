@@ -6,11 +6,11 @@ import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEqua
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
-import sf.example.configuration.TestConfiguration;
+import sf.example.TestConfiguration;
+import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-
 
 @ContextConfiguration(classes = TestConfiguration.class)
 public class JobTestStepDefs {
@@ -48,5 +48,20 @@ public class JobTestStepDefs {
 	@Then("^the Job title should be (.*)$")
 	public void title(String title) {
 		assertEquals(title, searchedJob.getTitle());
+	}
+	
+	@Then("^delete the Job$")
+	public void delete() {
+		jobRepository.delete(searchedJob);
+	}
+	
+	@Then("^the Job should be deleted$")
+	public void jobShouldBeDeleted() {
+		assertEquals(null, jobRepository.findOne(searchedJob.getId()));
+	}
+	
+	@After
+	public void cleanup() {
+		jobRepository.delete(jobRepository.findAll());
 	}
 }

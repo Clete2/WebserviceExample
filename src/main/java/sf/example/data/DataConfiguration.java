@@ -3,14 +3,12 @@ package sf.example.data;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * Configuration for the database.
  */
 @Configuration
-@EnableAutoConfiguration
 public class DataConfiguration {
 	@Autowired
 	private JobRepository jobRepository;

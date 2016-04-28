@@ -12,6 +12,8 @@ An example to show a CXF implementation of a REST and SOAP service.
 - JAX-RS
 - Apache Utilities
 - Jackson JAXB JSON Object Mapper
+- Cucumber (Business Driven Development)
+- Unitils (Reflection Assert)
 
 # Project Setup
 Prerequisites: The project should not be in a zip file.
