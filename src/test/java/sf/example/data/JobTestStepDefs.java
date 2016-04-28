@@ -44,22 +44,36 @@ public class JobTestStepDefs {
 	public void maxPay(int maxPay) {
 		assertEquals(maxPay, searchedJob.getMaxPay(), 0);
 	}
-	
+
 	@Then("^the Job title should be (.*)$")
 	public void title(String title) {
 		assertEquals(title, searchedJob.getTitle());
 	}
-	
+
 	@Then("^delete the Job$")
 	public void delete() {
 		jobRepository.delete(searchedJob);
 	}
-	
+
 	@Then("^the Job should be deleted$")
 	public void jobShouldBeDeleted() {
 		assertEquals(null, jobRepository.findOne(searchedJob.getId()));
 	}
+
+	@Then("^change the (minimum|maximum) pay of the Job to (\\d+)$")
+	public void changePay(String minMax, int newPay) {
+		if ("minimum".equals(minMax)) {
+			searchedJob.setMinPay(newPay);
+		} else {
+			searchedJob.setMaxPay(newPay);
+		}
+	}
 	
+	@Then("^change the title of the Job to (.*)$")
+	public void changeTitle(String title) {
+		searchedJob.setTitle(title);
+	}
+
 	@After
 	public void cleanup() {
 		jobRepository.delete(jobRepository.findAll());

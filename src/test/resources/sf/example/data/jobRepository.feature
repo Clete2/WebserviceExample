@@ -5,18 +5,30 @@ Feature: Job Repository
 		Given there is a Job that pays between 80000 and 100000 called Burger Flipper
 		When I search for a Job with a title of Burger Flipper
 	
-	Scenario: Search for a Job by title
+	Scenario: Search by title
 		Then the Jobs should be the same
 	
-	Scenario: Job Minimum Pay
+	Scenario: Minimum Pay
 		Then the Job should pay at least 80000
 	
-	Scenario: Job Maximum Pay
+	Scenario: Maximum Pay
 		Then the Job should pay at most 100000
 		
-	Scenario: Job Title
+	Scenario: Title
 		Then the Job title should be Burger Flipper
 		
-	Scenario: Delete Job
+	Scenario: Delete
 		Then delete the Job
 		Then the Job should be deleted
+		
+	Scenario: Change Title
+		Then change the title of the Job to Money Printer
+		Then the Job title should be Money Printer
+	
+	Scenario: Change Minimum Pay
+		Then change the minimum pay of the Job to 10
+		Then the Job should pay at least 10
+		
+	Scenario: Change Maximum Pay
+		Then change the maximum pay of the Job to 100
+		Then the Job should pay at most 100
